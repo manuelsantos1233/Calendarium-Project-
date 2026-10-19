@@ -1,2 +1,9 @@
-# Calendarium-Project-
-📸 Group Visual Diary  The site where we store and relive our best memories. With a calendar-style interface, every day comes to life through photos of our outings, trips, and unforgettable moments! 📅✨
+📸 **Nosso Diário Visual**
+Espaço do grupo para registar momentos num calendário interativo. Navega pelos dias e revive cada memória! 📅
+
+👥 **Equipa:** Manuel, [Nome 2], [Nome 3]
+🛠️ **Tech:** HTML, CSS, JS, Supabase
+
+✨ **Destaques:**
+- 🗓️ Fotos por data
+- 👥 Galeria colaborativa
