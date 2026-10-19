@@ -1,33 +1,31 @@
-.PHONY: help install build run clean status
+.PHONY: help build-backend run-backend install-frontend run-frontend clean status
 
 help:
 	@echo "=========================================================="
-	@echo " Calendário de Convívios em C (Servidor HTTP + Backend/Frontend)"
+	@echo " Calendário de Convívios - Java (Backend) + Next.js (Frontend)"
 	@echo "=========================================================="
-	@echo "  make install - Verifica dependências (gcc, make)"
-	@echo "  make build   - Compila o servidor C"
-	@echo "  make run     - Compila e executa o servidor na porta 8080"
-	@echo "  make clean   - Remove binários e limpa dados"
-	@echo "  make status  - Mostra o estado do Git"
+	@echo "  make install-frontend  - Instala dependências do Next.js"
+	@echo "  make build-backend     - Compila o projeto Backend (Spring Boot / Maven)"
+	@echo "  make run-backend       - Inicia o servidor Backend (Porta 8080)"
+	@echo "  make run-frontend      - Inicia o servidor Frontend Next.js (Porta 3000)"
+	@echo "  make clean             - Limpa build files e dados temporários"
+	@echo "  make status            - Mostra o estado do Git"
 
-install:
-	@echo "A verificar ferramentas de compilação..."
-	gcc --version
-	@echo "Pronto! Podes executar 'make run'."
+install-frontend:
+	cd frontend && npm install
 
-build:
-	mkdir -p public uploads data
-	gcc -O2 server.c -o server -lpthread
-	@echo "Compilação concluída com sucesso! Executável 'server' gerado."
+build-backend:
+	cd backend && ./mvnw clean package
 
-run: build
-	@echo "A iniciar servidor web em http://localhost:8080 ..."
-	./server
+run-backend:
+	cd backend && ./mvnw spring-boot:run
+
+run-frontend:
+	cd frontend && npm run dev
 
 clean:
-	rm -f server
-	rm -rf data/* uploads/*
-	@echo "Ambiente limpo."
+	rm -rf backend/target frontend/.next frontend/node_modules
+	@echo "Limpeza concluída."
 
 status:
 	git status
