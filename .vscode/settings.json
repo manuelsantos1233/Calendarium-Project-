@@ -1,0 +1,14 @@
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "/home/mirtolion167/.jdks/jdk-17",
+      "default": true
+    }
+  ],
+  "terminal.integrated.env.linux": {
+    "JAVA_HOME": "/home/mirtolion167/.jdks/jdk-17",
+    "PATH": "/home/mirtolion167/.jdks/jdk-17/bin:${env:PATH}"
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

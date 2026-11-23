@@ -12,24 +12,23 @@ export default function LoginPage() {
   
   const router = useRouter();
 
-  // Lógica do Cronómetro até ao dia 30 deste mês (Outubro de 2026)
+  // Contagem decrescente até 30 de outubro de 2027.
   useEffect(() => {
-    const targetDate = new Date('2026-10-30T23:59:59').getTime();
+    const targetDate = new Date(2027, 9, 30, 23, 59, 59).getTime();
 
-    const interval = setInterval(() => {
+    const updateTimeLeft = () => {
       const now = new Date().getTime();
-      const difference = targetDate - now;
+      const difference = Math.max(0, targetDate - now);
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
 
-        setTimeLeft({ days, hours, minutes, seconds });
-      }
-    }, 1000);
-
+    updateTimeLeft();
+    const interval = setInterval(updateTimeLeft, 1000);
     return () => clearInterval(interval);
   }, []);
 
